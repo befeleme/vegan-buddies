@@ -23,14 +23,14 @@ Features
 - Mentor map
 - Mentor profile
   - Fields
-    - Name/nickname         - Leave to matrix
-    - Photo                 - Leave to matrix
+    - Name/nickname         - Leave to xmpp
+    - Photo                 - Leave to xmpp
     - City + map            - In user index
     - Description/About me  - User index
     - Age(optional, or age group)  - User index
     - Contact methods (chat, email, telephone, personal meeting) - User index
     - Availability status   - User index
-    - Matrix nick           - User index
+    - XMPP nick             - User index
     - Rating                - User index
   - Account deactivation
   - Account deleation
@@ -77,41 +77,16 @@ Architecture
 ---------------
 
 ```
-╭──────────────────────────────────────╮   ╭───────────────╮
-│ Lobsters server                      │ → │  User index   │
-│  Mentor invites                      │ ← │               │
-╰──────────────────────────────────────╯   ╰───────────────╯
+╭─────────────────────────────────────────────────────────╮  
+│ Veganbuddies server                                     │
+│  Mentor invites                                         │
+╰─────────────────────────────────────────────────────────╯
          ↓                                       ↓↑
 ╭──────────────────────────────────────╮   ╭───────────────╮
-│  Mobile app (based on fluffychat)    │ → │ Matrix server │
+│  Mobile app (based on fluffychat)    │ → │ XMPP server   │
 │                                      │ ← │               │
 ╰──────────────────────────────────────╯   ╰───────────────╯
 ```
-
-User index
-
- - User - table
-    - Latitude and Longitude of users: postgis point
-    - Lobste.rs address (If set and approved in lobste.rs they are a mentor): charfield max 255
-    - matrix.org nick: charfield max 255
- - Test result - table
-    - User: FK Relationship
-    - Datetime
-    - grade: int
-    - answers: json
- - User rating - table
-    - Rated user: FK relationship
-    - Rating user: FK relationship
-    - Rating: int
-    - notes: Text
-
-Querying for near by mentors
---------------
-
-1. Look up near by mentors in mentor index.
-2. Get display info for mentors by looking them up in the lobster server
-
-
 
 Credits
 -------

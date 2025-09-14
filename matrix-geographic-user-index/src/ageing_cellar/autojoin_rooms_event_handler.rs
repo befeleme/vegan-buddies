@@ -1,1 +1,0 @@
-../../../util/matrix-bot-tester/src/autojoin_rooms_event_handler.rs
