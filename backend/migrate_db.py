@@ -21,7 +21,7 @@ def run_migration():
     
     # Docker command to execute the SQL
     docker_command = [
-        "docker-compose", "exec", "-T", "postgres", 
+        "docker" ,"compose", "exec", "-T", "postgres",
         "psql", "-U", "postgres", "-d", "vegan_buddies", 
         "-c", sql_command
     ]
@@ -43,14 +43,14 @@ def run_migration():
         print(f"Error output: {e.stderr}")
         print()
         print("Make sure docker-compose is running and the postgres service is up.")
-        print("You can start it with: docker-compose up")
+        print("You can start it with: docker compose up")
         
     except FileNotFoundError:
         print("❌ Docker Compose not found. Make sure Docker and Docker Compose are installed.")
         print()
         print("Manual method:")
         print("Run this command manually:")
-        print(f'docker-compose exec postgres psql -U postgres -d vegan_buddies -c "{sql_command}"')
+        print(f'docker compose exec postgres psql -U postgres -d vegan_buddies -c "{sql_command}"')
 
 if __name__ == "__main__":
     run_migration()
